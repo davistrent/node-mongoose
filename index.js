@@ -5,7 +5,7 @@ const url = 'mongodb://localhost:27017/conFusion';
 const connect = mongoose.connect(url);
 
 connect.then((db) => {
-    console.log('Connected to database: ', db);
+    console.log('Connected to database: ', db.connections[0].name);
 
     Dishes.create({
         name: 'Uthappizza',
@@ -40,7 +40,7 @@ connect.then((db) => {
     })
     .then((result) => {
         console.log("Removed all dishes: ", result);
-        
+
         return mongoose.connection.close();
     })
     .catch(err => {
